@@ -4,8 +4,15 @@
   text-align: center;
 }
 
+.title2 {
+  color: #333;
+  padding-bottom: 20px;
+  text-align: left;
+}
+
 .text {
   color: #777;
+  text-align: justify;
 }
 
 .btn {
