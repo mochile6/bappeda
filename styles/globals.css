@@ -19,7 +19,7 @@ a {
 nav {
   display: flex;
   padding: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 nav a {
@@ -43,4 +43,17 @@ footer {
 .not-found a {
   color: #4979ff;
   text-decoration: underline;
+}
+
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.graf-container {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }

@@ -10,7 +10,7 @@ const Navbar = () => {
           width="40"
           height="40"
         />
-        <a className="navbar-brand" href="/homepage">
+        <a className="navbar-brand" href="/index">
           BAPPEDA
         </a>
         <button
@@ -30,7 +30,7 @@ const Navbar = () => {
               <a
                 className="nav-link active"
                 aria-current="page"
-                href="/homepage"
+                href="/index"
               >
                 Home
               </a>
@@ -46,12 +46,12 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item navbar-right">
-              <a className="nav-link" href="/User">
+              <a className="nav-link" href="/user">
                 User
               </a>
             </li>
             <li className="nav-item navbar-right">
-              <a className="nav-link" href="/Login">
+              <a className="nav-link" href="/login">
                 Login
               </a>
             </li>

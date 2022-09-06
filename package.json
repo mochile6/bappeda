@@ -9,13 +9,30 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.3.1",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@hookform/resolvers": "^2.9.7",
+    "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^6.5.1",
     "jquery": "^3.6.1",
+    "js-cookie": "^3.0.1",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.34.2",
+    "react-redux": "^8.0.2",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
+    "yup": "^0.32.11",
+    "zod": "^3.18.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.184",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5"
   }
