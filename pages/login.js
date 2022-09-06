@@ -35,7 +35,7 @@ const Login = ({ loginUser }) => {
             className="form-control"
             {...register("email")}
           />
-          <label className="form-label" for="form2Example1">
+          <label className="form-label">
             Email address
           </label>
         </div>
@@ -47,7 +47,7 @@ const Login = ({ loginUser }) => {
             className="form-control"
             {...register("password")}
           />
-          <label className="form-label" for="form2Example2">
+          <label className="form-label">
             Password
           </label>
         </div>
