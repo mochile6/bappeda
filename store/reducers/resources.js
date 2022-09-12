@@ -14,12 +14,14 @@ const reducer =
 
     switch (action.type) {
       case `resources.${resourceName}.set`:
-        const data = _.isArray(action.data) ? action.data : [action.data];
+        const data = _.isArray(action.data.rows)
+          ? action.data.rows
+          : [action.data.rows];
 
         return {
           ...state,
           rows: {
-            ...action.rows,
+            ...state.rows,
             ..._.keyBy(data, "id"),
           },
           count: action.data.count ?? 0,
@@ -44,7 +46,9 @@ const reducer =
         return temp;
 
       case `resources.${resourceName}.overwrite`:
-        const data1 = _.isArray(action.data) ? action.data : [action.data];
+        const data1 = _.isArray(action.data.rows)
+          ? action.data.rows
+          : [action.data.rows];
 
         return {
           rows: _.keyBy(data1, "id"),

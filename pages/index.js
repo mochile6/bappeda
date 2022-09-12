@@ -1,10 +1,8 @@
-import Head from "next/head";
-import Image from "next/image";
+import _ from "lodash";
 import styles from "../styles/Home.module.css";
-import Navbar from "../comps/Navbar";
-import Footer from "../comps/Footer";
 import { connect } from "react-redux";
 import { RESOURCE_NAME } from "../utils/constant";
+import { getAllData as _getAllData } from "../store/actions/resources";
 import { getResources } from "../store/selector/resources";
 import {
   Table,
@@ -14,14 +12,21 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 
-const Home = ({ anggarans }) => {
+const Home = ({ anggarans, getAllData }) => {
+  useEffect(() => {
+    (async () => {
+      await getAllData(RESOURCE_NAME.ANGGARANS);
+    })();
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Homepage</h1>
+
       <p className={styles.text}>
         An API is always needed to create mobile applications, single page
         applications, use AJAX calls and provide data to clients. An popular
@@ -34,26 +39,27 @@ const Home = ({ anggarans }) => {
         <Table size="sm">
           <Thead>
             <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
+              <Th>ID</Th>
+              <Th>Urusan</Th>
+              <Th>Bidang Urusan</Th>
+              <Th>kegiatan</Th>
+              <Th>Satuan</Th>
+              <Th>Target</Th>
+              <Th>Pagu</Th>
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>inches</Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>25.4</Td>
-            </Tr>
-            <Tr>
-              <Td>feet</Td>
-              <Td>centimetres (cm)</Td>
-              <Td isNumeric>30.48</Td>
-            </Tr>
-            <Tr>
-              <Td>yards</Td>
-              <Td>metres (m)</Td>
-              <Td isNumeric>0.91444</Td>
-            </Tr>
+            {_.map(anggarans.rows, (anggaran) => (
+              <Tr key={anggaran.id}>
+                <Td>{anggaran.id}</Td>
+                <Td>{anggaran.userId}</Td>
+                <Td>{anggaran.bidangUrusan}</Td>
+                <Td>{anggaran.kegiatan}</Td>
+                <Td>{anggaran.satuan}</Td>
+                <Td>{anggaran.target}</Td>
+                <Td>{anggaran.pagu}</Td>
+              </Tr>
+            ))}
           </Tbody>
           <Tfoot>
             <Tr>
@@ -72,6 +78,8 @@ const mapStateToProps = (state) => ({
   anggarans: getResources(RESOURCE_NAME.ANGGARANS)(state),
 });
 
-const connector = connect(mapStateToProps);
+const connector = connect(mapStateToProps, {
+  getAllData: _getAllData,
+});
 
 export default connector(Home);

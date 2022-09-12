@@ -1,6 +1,6 @@
 import styles from "../styles/Home.module.css";
 
-const user = () => {
+const User = () => {
   return (
     <div>
       <h1>Data User</h1>
@@ -16,4 +16,4 @@ const user = () => {
   );
 };
 
-export default user;
+export default User;

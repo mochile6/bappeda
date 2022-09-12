@@ -1,6 +1,13 @@
 import Link from "next/link";
+import { connect } from "react-redux";
+import { useRouter } from "next/router";
+import { logoutUser as _logoutUser } from "../store/actions/currentUser";
 
-const Navbar = () => {
+const Navbar = ({ logoutUser }) => {
+  const router = useRouter();
+
+  const handleKeluar = () => logoutUser().then(() => router.push("/login"));
+
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
       <div className="container-fluid">
@@ -27,11 +34,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="/index"
-              >
+              <a className="nav-link active" aria-current="page" href="/">
                 Home
               </a>
             </li>
@@ -55,6 +58,9 @@ const Navbar = () => {
                 Login
               </a>
             </li>
+            <li onClick={handleKeluar} className="nav-item navbar-right">
+              <a className="nav-link">Logout</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -62,4 +68,6 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const connector = connect(null, { logoutUser: _logoutUser });
+
+export default connector(Navbar);

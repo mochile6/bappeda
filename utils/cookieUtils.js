@@ -17,6 +17,8 @@ export const setToken = (token) => Cookies.set("token", token);
 
 export const getToken = () => Cookies.get("token");
 
+export const removeToken = () => Cookies.remove("token");
+
 export const isAuthenticated = () => {
   const token = getToken();
 

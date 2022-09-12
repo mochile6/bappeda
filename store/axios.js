@@ -14,6 +14,9 @@ export const applyInterceptors = (dispatch) => {
   instance.interceptors.request.use(
     (config) => {
       const token = cookieUtils.getToken();
+
+      console.log(token);
+
       config.headers.Authorization = token ? `Bearer ${token}` : "";
 
       config.resourceName = config.headers.resourceName;
