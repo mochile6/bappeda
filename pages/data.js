@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { RESOURCE_NAME } from "../utils/constant";
 import { getAllData as _getAllData } from "../store/actions/resources";
 import { getResources } from "../store/selector/resources";
+import { deleteData } from "../store/actions/resources";
+import Cookies from "js-cookie";
 import {
   Table,
   Thead,
@@ -17,18 +19,29 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
+import axios from "axios";
 
 const Data = ({ anggarans, getAllData }) => {
   useEffect(() => {
     (async () => {
-      await getAllData(RESOURCE_NAME.ANGGARANS);
+      await getAllData("anggarans");
     })();
-  }, []);
+    console.log(anggarans);
+  }, [anggarans]);
 
   const router = useRouter();
 
   const handleTambah = () => {
     router.push("/input");
+  };
+
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:3001/anggarans/${id}`, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    });
+    window.location.reload();
   };
 
   return (
@@ -60,13 +73,23 @@ const Data = ({ anggarans, getAllData }) => {
           <Tbody>
             {_.map(anggarans?.rows ?? [], (anggaran) => (
               <Tr key={anggaran.userId}>
-                <Td>{anggaran.id}</Td>
+                {/* <Td>{anggaran.id}</Td> */}
                 <Td>{anggaran.userId}</Td>
                 <Td>{anggaran.bidangUrusan}</Td>
                 <Td>{anggaran.kegiatan}</Td>
                 <Td>{anggaran.satuan}</Td>
                 <Td>{anggaran.target}</Td>
                 <Td>{anggaran.pagu}</Td>
+                <Button>
+                  <a href={`/update?id=${anggaran.id}`}>Edit</a>
+                </Button>
+                <Button
+                  onClick={() => {
+                    handleDelete(anggaran.id);
+                  }}
+                >
+                  <a>Delete</a>
+                </Button>
               </Tr>
             ))}
           </Tbody>

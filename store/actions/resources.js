@@ -81,7 +81,10 @@ export const updateData =
   };
 
 export const deleteData = (resourceName, id) => async (dispatch) => {
-  await axios.delete(`/${resourceName}/${id}`);
-
+  await axios.delete(`/${resourceName}/${id}`, {
+    headers: {
+      resourceName,
+    },
+  });
   dispatch(deleteResource(resourceName, id));
 };

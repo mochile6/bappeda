@@ -23,8 +23,11 @@ const InputPage = ({ addData }) => {
 
   const onSubmit = async (values) => {
     await addData(RESOURCE_NAME.ANGGARANS, values);
-
-    router.push("/data");
+    const confirm = window.confirm("Data berhasil ditambahkan");
+    if (confirm) {
+      // refresh going to same page
+      router.push("/data");
+    }
   };
 
   return (
